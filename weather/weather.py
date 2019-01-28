@@ -18,10 +18,12 @@ def xml_to_dict(root, data) :
         return data
 
     return data
- 
-tree = ET.parse('weather.xml')
+
+x = input('Enter you XML file (example.xml) : ').strip()
+tree = ET.parse(x)
 root = tree.getroot()
 data = xml_to_dict(root, dict())[root.tag]
 
-with open('weather.json', 'w') as f:
+with open(x[:len(x)-4]+'.json', 'w') as f:
   json.dump(data, f, ensure_ascii=False)
+print(x[:len(x)-4]+'.json')
