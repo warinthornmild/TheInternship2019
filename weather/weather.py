@@ -19,11 +19,13 @@ def xml_to_dict(root, data) :
 
     return data
 
-x = input('Enter you XML file (example.xml) : ').strip()
-tree = ET.parse(x)
+xmlfile = input('Enter you XML file (example.xml) : ').strip()
+jsonfile = xmlfile[:len(xmlfile)-4]+'.json'
+
+tree = ET.parse(xmlfile)
 root = tree.getroot()
 data = xml_to_dict(root, dict())[root.tag]
 
-with open(x[:len(x)-4]+'.json', 'w') as f:
+with open(jsonfile, 'w') as f:
   json.dump(data, f, ensure_ascii=False)
-print(x[:len(x)-4]+'.json')
+print(jsonfile)
